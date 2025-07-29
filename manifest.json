@@ -3,7 +3,7 @@
   "short_name": "MKARD Studio",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#1f1f1f",
   "theme_color": "#1a73e8",
   "icons": [
     {
