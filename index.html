@@ -30,20 +30,108 @@
         p {
             color: #ffffff;
         }
+
+        .button-area {
+            position: relative;
+            display: inline-block;
+        }
+
+        .secret-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #444;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .secret-btn-hat {
+            width: 60px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 0px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .secret-btn-feet {
+            width: 35px;
+            height: 35px;
+            background-color: #444;
+            border-radius: 35px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .secret-btn:active {
+            background-color: #2a9cff;
+        }
+        .secret-btn-hat:active {
+            background-color: #2a9cff;
+        }
+        .secret-btn-feet:active {
+            background-color: #2a9cff;
+        }
     </style>
 </head>
 <body>
     <h1>Coming Soon</h1>
-    <img src="duckDevelopment.png" alt="Under Development">
+    
+    <div class="button-area">
+        <img src="duckDevelopment.png" alt="Under Development">
+        <button class="secret-btn" style="top:31%; left:42%;" data-id="1">1</button>
+        <button class="secret-btn" style="top:63%; left:60%;"data-id="2">2</button>
+        <button class="secret-btn-feet" style="top:79%; left:25%;"data-id="3">3</button>
+        <button class="secret-btn-hat" style="top:8%; left:37%;"data-id="4">4</button>
+        <button class="secret-btn" style="top:39%; left:10%;"data-id="5">5</button>
+    </div>
+
     <p>Software is under development... :D</p>
 
-    <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('✅ Service Worker registered:', reg))
-        .catch(err => console.error('❌ Service Worker registration failed:', err));
-    }
-  </script>
+    <div id="hidden-image" style="width:40%; height:auto; display:none; margin:0 auto; margin-top: 20px;">
+        <img src="secret.png" alt="Secret Image">
+    </div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('✅ Service Worker registered:', reg))
+            .catch(err => console.error('❌ Service Worker registration failed:', err));
+        }
+
+        const correctSequence = ['2','4','3','5','1']; /* Hand, Hat, Feet, Torch, Beak */
+        let currentSequence = [];
+
+        const buttons = document.querySelectorAll('.secret-btn,.secret-btn-hat,.secret-btn-feet');
+        const hiddenImage = document.getElementById('hidden-image');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                let step = currentSequence.length;
+
+                if (id == correctSequence[step]) {
+                    currentSequence.push(id);
+                    if (currentSequence.length == correctSequence.length) {
+                        hiddenImage.style.display = 'block';
+                    }
+                } else {
+                    currentSequence = [];
+                }
+            });
+        });
+    </script>
 </body>
 </html>
