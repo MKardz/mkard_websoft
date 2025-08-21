@@ -37,8 +37,8 @@
         }
 
         .secret-btn {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             background-color: #444;
             border-radius: 30px;
             color: white;
@@ -63,10 +63,10 @@
         }
 
         .secret-btn-feet {
-            width: 35px;
-            height: 35px;
+            width: 38px;
+            height: 38px;
             background-color: #444;
-            border-radius: 35px;
+            border-radius: 30px;
             color: white;
             font-size: 1.2rem;
             cursor: pointer;
@@ -93,7 +93,7 @@
         <img src="duckDevelopment.png" alt="Under Development">
         <button class="secret-btn" style="top:31%; left:42%;" data-id="1">1</button>
         <button class="secret-btn" style="top:63%; left:60%;"data-id="2">2</button>
-        <button class="secret-btn-feet" style="top:79%; left:25%;"data-id="3">3</button>
+        <button class="secret-btn-feet" style="top:79%; left:24%;"data-id="3">3</button>
         <button class="secret-btn-hat" style="top:8%; left:37%;"data-id="4">4</button>
         <button class="secret-btn" style="top:39%; left:10%;"data-id="5">5</button>
     </div>
@@ -111,7 +111,7 @@
             .catch(err => console.error('❌ Service Worker registration failed:', err));
         }
 
-        const correctSequence = ['2','4','3','5','1']; /* Hand, Hat, Feet, Torch, Beak */
+        const correctSequence = ['2','4','3','5','1']; 
         let currentSequence = [];
 
         const buttons = document.querySelectorAll('.secret-btn,.secret-btn-hat,.secret-btn-feet');
