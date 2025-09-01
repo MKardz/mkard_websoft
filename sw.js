@@ -1,17 +1,17 @@
 const CACHE_NAME = 'version 1';
 const CACHE_ASSETS = [
-    '/',
-    '/CNAME',
-    '/duckDevelopment.png',
-    '/index.html',
-    'manifest.json',
-    'sw.js'
+    './duckDevelopment.png',
+    './index.html',
+    './manifest.json',
+    './app.html',
+    './secret.png',
+    './icon.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(FILES_TO_CACHE);
+      return cache.addAll(CACHE_ASSETS);
     })
   );
   self.skipWaiting();
